@@ -6,6 +6,13 @@ var Weather = require('Weather');
 var About = require('About');
 var Examples = require('Examples');
 
+// Load foundation
+require('style!css!foundation-sites/dist/css/foundation.min.css');
+
+// Start foundation select document using jquery and call the foundation method
+
+$(document).foundation();
+
 ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component = {Main}>
