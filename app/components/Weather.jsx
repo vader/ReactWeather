@@ -21,18 +21,18 @@ var Weather = React.createClass({
     });
 
     weatherMapApi.getTemp(location).then(function (temp) {
-      _this.setState({
-        location: location,
-        temp: temp,
-        isLoading: false,
+        _this.setState({
+          location: location,
+          temp: temp,
+          isLoading: false,
+        });
+      },
+      function (e) {
+        _this.setState({
+          isLoading: false,
+          errorMessage: e.message,
+        });
       });
-    },
-    function (e) {
-      _this.setState({
-        isLoading: false,
-        errorMessage: e.message,
-      });
-    });
   },
 
   componentDidMount: function () {
@@ -58,7 +58,7 @@ var Weather = React.createClass({
     var loading = function () {
       if (isLoading) {
         return <h3 className="text-center">Fetching weather for {location}...</h3>;
-      }else if (temp && location) {
+      } else if (temp && location) {
         return <WeatherFormMessage temp={temp} location={location}/>;
       }
     };
@@ -73,11 +73,11 @@ var Weather = React.createClass({
 
     return (
       <div>
-       <h1 className="text-center page-title">Get Weather</h1>
-       <WeatherForm onSearch={this.handleSearch}/>
-       {loading()}
-       {renderError()}
-       </div>
+        <h1 className="text-center page-title">Get Weather</h1>
+        <WeatherForm onSearch={this.handleSearch}/>
+        {loading()}
+        {renderError()}
+      </div>
     );
   },
 });
